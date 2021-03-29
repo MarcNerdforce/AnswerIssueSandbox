@@ -1,6 +1,6 @@
 <template>
   <div v-if="!loading">
-    <h1>we are loaded</h1>
+    <button @click="addit">sdasdsad</button>
     <survey :survey="survey" />
   </div>
 </template>
@@ -11,7 +11,6 @@ import "survey-vue/modern.css";
 import "./index.css";
 Survey.settings.lazyRowsRendering = true;
 Survey.StylesManager.applyTheme("modern");
-
 const json = require("../components/survey.json");
 const answers_test = require("../components/answers_test.json");
 
@@ -21,10 +20,10 @@ export default {
     let loading = true;
     let survey = {};
     let doStuff = async () => {};
+    survey = new Survey.Model(json);
     doStuff().then((r) => {
-      cmp.survey = new Survey.Model(json);
       cmp.loading = false;
-      cmp.survey.data = answers_test;
+      //cmp.survey.data = answers_test;
     });
     return {
       loading,
@@ -32,6 +31,11 @@ export default {
     };
   },
   mounted() {},
+  methods: {
+    addit(sur) {
+      this.survey.data = answers_test;
+    },
+  },
 };
 </script>
 
