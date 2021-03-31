@@ -21,8 +21,11 @@ export default {
     let survey = {};
     let doStuff = async () => {};
     survey = new Survey.Model(json);
+    survey.data = answers_test;
     doStuff().then((r) => {
       cmp.loading = false;
+    });
+    doStuff().then((el) => {
       //cmp.survey.data = answers_test;
     });
     return {
@@ -30,10 +33,20 @@ export default {
       survey,
     };
   },
-  mounted() {},
+  mounted() {
+    //this.survey.data = answers_test;
+  },
   methods: {
+    callme() {
+      console.log("created");
+    },
     addit(sur) {
       this.survey.data = answers_test;
+    },
+    watch: {
+      loading() {
+        this.survey.data = answers_test;
+      },
     },
   },
 };
